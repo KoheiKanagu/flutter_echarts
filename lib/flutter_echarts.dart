@@ -169,12 +169,13 @@ class _EchartsState extends State<Echarts> {
           ),
         ].toSet(),
         gestureRecognizers: getGestureRecognizers(),
-        onWebResourceError: (error){
-          if(error.errorType == WebResourceErrorType.webContentProcessTerminated) {
-            _controller.reload();
-          }
-        },
-      )
+          onWebResourceError: (error) {
+            if (error.errorType ==
+                WebResourceErrorType.webContentProcessTerminated) {
+              _controller.reload();
+            }
+          },
+        )
     );
   }
 }
