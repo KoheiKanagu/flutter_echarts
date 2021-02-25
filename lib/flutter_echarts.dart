@@ -7,6 +7,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/foundation.dart';
+import 'package:webview_flutter/platform_interface.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -167,7 +168,12 @@ class _EchartsState extends State<Echarts> {
             }
           ),
         ].toSet(),
-        gestureRecognizers: getGestureRecognizers()
+        gestureRecognizers: getGestureRecognizers(),
+        onWebResourceError: (error){
+          if(error.errorType == WebResourceErrorType.webContentProcessTerminated) {
+            _controller.reload();
+          }
+        },
       )
     );
   }
